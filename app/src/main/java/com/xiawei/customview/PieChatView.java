@@ -55,6 +55,7 @@ public class PieChatView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+        // 获取到 view 的最终宽高
         this.mWidth = w;
         this.mHeight = h;
     }

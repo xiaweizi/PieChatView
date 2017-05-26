@@ -18,33 +18,53 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Paint paint = new Paint();
         mPieChatView = (PieChatView) findViewById(R.id.pcv);
         mList = new ArrayList<>();
+
+        // 初始化数据
         PieBean bean = new PieBean("d", 100);
-//        PieBean bean1 = new PieBean("d", 200);
-//        PieBean bean2 = new PieBean("d", 300);
-//        PieBean bean3 = new PieBean("d", 100);
-//        PieBean bean4 = new PieBean("d", 400);
-//        PieBean bean5 = new PieBean("d", 500);
-//        PieBean bean6 = new PieBean("d", 100);
         mList.add(bean);
-//        mList.add(bean1);
-//        mList.add(bean2);
-//        mList.add(bean3);
-//        mList.add(bean4);
-//        mList.add(bean5);
-//        mList.add(bean6);
         mPieChatView.setDatas(mList);
 
+        // 添加数据
         findViewById(R.id.bt_add).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Random random = new Random();
-                PieBean bean = new PieBean("d", 100);
-                mList.add(bean);
-                mPieChatView.setDatas(mList);
+                addData();
             }
         });
+
+        // 删除数据
+        findViewById(R.id.bt_delete).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteData();
+            }
+        });
+    }
+
+    /**
+     * 随机添加数据
+     */
+    private void addData() {
+        Random add = new Random();
+        // 随机添加 50-150 的数据
+        PieBean bean = new PieBean("d", add.nextInt(100) + 50);
+        mList.add(bean);
+        mPieChatView.setDatas(mList);
+    }
+
+    /**
+     * 随机删除数据
+     */
+    private void deleteData() {
+        Random delete = new Random();
+        int size = mList.size();
+        // 如果数据只剩一个，直接返回
+        if (size <= 1) {
+            return;
+        }
+        mList.remove(delete.nextInt(size - 1));
+        mPieChatView.setDatas(mList);
     }
 }
