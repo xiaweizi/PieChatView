@@ -1,5 +1,5 @@
 
-#最定义饼状图
+#自定义饼状图
 
 ![avatar.jpg](http://upload-images.jianshu.io/upload_images/4043475-b97a99df57d78b38.gif?imageMogr2/auto-orient/strip)
 
